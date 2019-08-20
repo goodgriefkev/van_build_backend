@@ -78,7 +78,9 @@ exports.up = function(knex, Promise) {
     table.boolean('lights_installed').defaultTo(false);
     table.text('notes');
     table.string('img_url');
+    table.integer('user_id').references('id').inTable('users');
     table.timestamp('created_at').defaultTo(knex.fn.now());
+    table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
 };
 
