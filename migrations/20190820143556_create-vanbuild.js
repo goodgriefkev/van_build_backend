@@ -24,7 +24,7 @@ exports.up = function(knex, Promise) {
     table.boolean('solar_power').defaultTo(false);
     table.text('solar_panel_brand');
     table.integer('solar_panel_watts');
-    table.boolean('solar_installed');
+    table.boolean('solar_installed').defaultTo(false);
     table.text('solar_controller_brand');
     table.text('solar_controller_type');
     table.boolean('solar_controller_installed').defaultTo(false);
@@ -38,7 +38,7 @@ exports.up = function(knex, Promise) {
     table.text('water_pump_type');
     table.text('water_pump_brand');
     table.text('water_pump_description');
-    table.boolean('water_pump_installed');
+    table.boolean('water_pump_installed').defaultTo(false);
     table.boolean('water_heater').defaultTo(false);
     table.text('water_heater_brand');
     table.text('water_heater_type');
@@ -60,11 +60,11 @@ exports.up = function(knex, Promise) {
     table.text('heater_type');
     table.text('heater_brand');
     table.text('heater_model');
-    table.boolean('heater_installed');
+    table.boolean('heater_installed').defaultTo(false);
     table.boolean('ac').defaultTo(false);
     table.text('ac_brand');
     table.text('ac_model');
-    table.boolean('ac_installed');
+    table.boolean('ac_installed').defaultTo(false);
     table.boolean('fan').defaultTo(false);
     table.text('fan_brand');
     table.text('fan_model');
@@ -78,7 +78,6 @@ exports.up = function(knex, Promise) {
     table.boolean('lights_installed').defaultTo(false);
     table.text('notes');
     table.string('img_url');
-    table.integer('user_id').references('id').inTable('users');
     table.timestamp('created_at').defaultTo(knex.fn.now());
     table.timestamp('updated_at').defaultTo(knex.fn.now());
   });
