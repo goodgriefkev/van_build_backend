@@ -1,0 +1,20 @@
+{
+  "name": "van-build-tracker-backend",
+  "version": "1.0.0",
+  "description": "Problem: Camper van conversion is a complex process with multiple overlapping systems installed in a very small space. A major challenge is keeping track of completed tasks and next steps.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.generalassemb.ly/goodgriefkev/van-build-tracker-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  }
+}
