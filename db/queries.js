@@ -17,5 +17,10 @@ module.exports = {
     return knex('vanbuild')
     .where('id', id)
     .update(vanbuild, '*');
+  },
+  delete(id) {
+    return knex('vanbuild')
+    .where('id', id)
+    .del();
   }
 };
