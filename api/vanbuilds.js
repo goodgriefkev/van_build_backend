@@ -2,10 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 
+const queries = require('../db/queries.js');
+
 router.get('/', (req, res) => {
-  res.json({
-    message: 'yas'
-  })
+  queries.getAll()
+  .then(vanbuilds => {
+    res.json(vanbuilds);
+  });
 });
 
 module.exports = router;
