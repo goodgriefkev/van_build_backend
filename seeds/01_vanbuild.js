@@ -4,7 +4,7 @@ exports.seed = function(knex) {
   return knex('vanbuild').del()
     .then(function () {
       // Inserts seed entries
-      return knex('vanbuild').insert(
+      return knex('vanbuild').insert([
         {
           id: 1,
           name: 'Gomez',
@@ -242,6 +242,6 @@ exports.seed = function(knex) {
           notes: 'Notes go here',
           img_url: 'http://'
         }
-      );
+      ]);
     });
 };

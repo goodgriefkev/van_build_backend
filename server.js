@@ -7,15 +7,15 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-const vanbuildsController = require('./controllers/vanbuilds.js')
-
+const vanbuilds = require('./api/vanbuilds.js');
 
 // // Middleware // //
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-app.use('/vanbuilds', vanbuildsController);
+
+app.use('/api/vanbuilds', vanbuilds);
 
 app.listen(PORT, () => {
   console.log('listening on port', PORT)
