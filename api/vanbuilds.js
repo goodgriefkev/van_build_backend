@@ -9,6 +9,11 @@ function isValidId(req, res, next) {
   next(new Error('Invalid ID'));
 }
 
+function validVanbuild(data) {
+  const hasName = typeof data.name == 'string' && data.name.trim() != '';
+  return hasName;
+}
+
 router.get('/', (req, res) => {
   queries.getAll()
   .then(data => {
@@ -25,6 +30,17 @@ router.get('/:id', isValidId, (req, res, next) => {
       next();
     }
   });
+});
+
+router.post('/', (req, res, next) => {
+  if(validVanbuild(req.body)) {
+    queries.create(req.body)
+    .then(vanbuilds => {
+      res.json(vanbuilds[0]);
+    })
+  } else {
+    next(new Error('Invalid Entry'))
+  }
 });
 
 module.exports = router;

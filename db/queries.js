@@ -8,5 +8,9 @@ module.exports = {
     return knex('vanbuild')
     .where('id', id)
     .first();
+  },
+  create(vanbuild) {
+    return knex('vanbuild')
+    .insert(vanbuild, '*');
   }
-}
+};
