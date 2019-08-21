@@ -43,4 +43,15 @@ router.post('/', (req, res, next) => {
   }
 });
 
+router.put('/:id', isValidId, (req, res, next) => {
+  if(validVanbuild(req.body)) {
+    queries.update(req.params.id, req.body)
+    .then(vanbuilds => {
+      res.json(vanbuilds[0]);
+    })
+  } else {
+    next(new Error('Invalid Entry'))
+  }
+});
+
 module.exports = router;

@@ -12,5 +12,10 @@ module.exports = {
   create(vanbuild) {
     return knex('vanbuild')
     .insert(vanbuild, '*');
+  },
+  update(id, vanbuild) {
+    return knex('vanbuild')
+    .where('id', id)
+    .update(vanbuild, '*');
   }
 };
