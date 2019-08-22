@@ -63,10 +63,14 @@ router.post('/login', (req, res, next) => {
           bcrypt
             .compare(req.body.password, user.password)
             .then((outcome) => {
-              res.json({
-                outcome,
-                message: "Logging in"
-              });
+              if(outcome) {
+                res.json({
+                  outcome,
+                  message: "Logging in"
+                });
+              } else {
+                next(Error('Invalid Login'));
+              };
             });
         } else {
           next(Error('Invalid Login'));
