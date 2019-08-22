@@ -25,9 +25,8 @@ router.post('/signup', (req, res, next) => {
     User
       .getOneByEmail(req.body.email)
       .then(user => {
-        console.log('user', user)
+        // console.log('user', user)
         if(!user) {
-
           bcrypt
             .hash(req.body.password, 12)
             .then((hash) => {
@@ -36,7 +35,6 @@ router.post('/signup', (req, res, next) => {
                 password: hash,
                 created_at: new Date()
               };
-
               User
                 .create(createdUser)
                 .then(id => {
@@ -45,7 +43,7 @@ router.post('/signup', (req, res, next) => {
                     message: "yep signup route"
                   });
                 })
-          });
+            });
         } else {
           next(new Error('Email Unavailable'))
         }
@@ -53,6 +51,30 @@ router.post('/signup', (req, res, next) => {
   } else {
     next(new Error('Invalid User'));
   }
+});
+
+router.post('/login', (req, res, next) => {
+  if(validateUser(req.body)) {
+    User
+      .getOneByEmail(req.body.email)
+      .then(user => {
+        console.log('user', user);
+        if(user) {
+          bcrypt
+            .compare(req.body.password, user.password)
+            .then((outcome) => {
+              res.json({
+                outcome,
+                message: "Logging in"
+              });
+            });
+        } else {
+          next(Error('Invalid Login'));
+        }
+      })
+  } else {
+    next(new Error('Invalid Login'));
+  };
 });
 
 module.exports = router;
