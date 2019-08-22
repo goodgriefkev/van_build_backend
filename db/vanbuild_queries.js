@@ -9,6 +9,9 @@ module.exports = {
     .where('id', id)
     .first();
   },
+  getByUser(id) {
+    return knex('vanbuild').where('user_id', id);
+  },
   create(vanbuild) {
     return knex('vanbuild')
     .insert(vanbuild, '*');
