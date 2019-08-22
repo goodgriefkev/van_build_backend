@@ -64,9 +64,13 @@ router.post('/login', (req, res, next) => {
             .compare(req.body.password, user.password)
             .then((outcome) => {
               if(outcome) {
+                res.cookie('user_id', user.id, {
+                  httpOnly: true,
+                  secure: req.app.get('env') != 'development',
+                  signed: true
+                });
                 res.json({
-                  outcome,
-                  message: "Logging in"
+                  message: "Logged in"
                 });
               } else {
                 next(Error('Invalid Login'));
