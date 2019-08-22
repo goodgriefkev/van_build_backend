@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
-const user = require('../db/user_queries.js');
+const User = require('../db/user_queries.js');
 
 router.get('/', (req, res) => {
   res.json({
@@ -22,7 +22,7 @@ function validateUser(user) {
 
 router.post('/signup', (req, res, next) => {
   if(validateUser(req.body)) {
-    user
+    User
       .getOneByEmail(req.body.email)
       .then(user => {
         console.log('user', user)
@@ -31,13 +31,20 @@ router.post('/signup', (req, res, next) => {
           bcrypt
             .hash(req.body.password, 12)
             .then((hash) => {
+              const createdUser = {
+                email: req.body.email,
+                password: hash,
+                created_at: new Date()
+              };
 
-          
-
-            res.json({
-              hash,
-              message: "yep signup route"
-            });
+              User
+                .create(createdUser)
+                .then(id => {
+                  res.json({
+                    id,
+                    message: "yep signup route"
+                  });
+                })
           });
         } else {
           next(new Error('Email Unavailable'))
