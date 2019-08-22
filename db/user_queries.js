@@ -2,7 +2,7 @@ const knex = require('./knex'); //referencing file in this directory specificall
 
 module.exports = {
   getOne(id) {
-    return knex('user')
+    return knex('users')
     .where('id', id)
     .first();
   }

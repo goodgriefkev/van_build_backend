@@ -4,7 +4,7 @@ const queries = require('../db/user_queries.js');
 const vanbuild = require('../db/vanbuild_queries.js')
 
 function isValidId(req, res, next) {
-  if(!Nan(req.params.id)) return next();
+  if(!isNaN(req.params.id)) return next();
   next(new Error('User Not Found'));
 };
 

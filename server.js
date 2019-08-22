@@ -8,6 +8,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 const vanbuilds = require('./api/vanbuilds.js');
+const users = require('./api/users.js');
 
 // // Middleware // //
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use('/api/vanbuilds', vanbuilds);
+app.use('/api/users', users);
 
 // // Error Handling // //
 app.use(function(req, res, next) {
