@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -18,6 +19,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(cors(
+
+));
 
 app.use('/auth', auth);
 app.use('/api/vanbuilds', vanbuilds);
