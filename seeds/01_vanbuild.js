@@ -82,7 +82,8 @@ exports.seed = function(knex) {
           lights_number: 12,
           lights_installed: false,
           notes: 'Notes go here',
-          img_url: 'http://'
+          img_url: 'http://',
+          user_id: 2
         },
         {
           id: 2,
@@ -161,7 +162,8 @@ exports.seed = function(knex) {
           lights_number: 8,
           lights_installed: true,
           notes: 'Notes go here',
-          img_url: 'http://'
+          img_url: 'http://',
+          user_id: 3
         },
         {
           id: 3,
@@ -240,7 +242,8 @@ exports.seed = function(knex) {
           lights_number: null,
           lights_installed: false,
           notes: 'Notes go here',
-          img_url: 'http://'
+          img_url: 'http://',
+          user_id: 1
         }
       ]);
     });

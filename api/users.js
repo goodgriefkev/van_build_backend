@@ -17,6 +17,18 @@ router.get('/:id', isValidId, (req, res, next) => {
       next();
     }
   })
-})
+});
+
+router.get('/:id/vanbuild', (req, res) => {
+  if (!isNaN(req.params.id)) {
+    vanbuild
+      .getByUser(req.params.id)
+      .then(vanbuild => {
+        res.json(vanbuild)
+      });
+  } else {
+    resError(res, 500, "Invalid ID");
+  }
+});
 
 module.exports = router;
