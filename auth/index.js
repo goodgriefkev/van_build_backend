@@ -1,4 +1,6 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
+
 const router = express.Router();
 
 const user = require('../db/user_queries.js');
@@ -25,10 +27,18 @@ router.post('/signup', (req, res, next) => {
       .then(user => {
         console.log('user', user)
         if(!user) {
-          res.json({
-            user,
-            message: "yep signup route"
-          })
+
+          bcrypt
+            .hash(req.body.password, 12)
+            .then((hash) => {
+
+          
+
+            res.json({
+              hash,
+              message: "yep signup route"
+            });
+          });
         } else {
           next(new Error('Email Unavailable'))
         }
