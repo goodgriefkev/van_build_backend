@@ -9,6 +9,7 @@ const PORT = process.env.PORT;
 
 const vanbuilds = require('./api/vanbuilds.js');
 const users = require('./api/users.js');
+const auth = require('./auth/index.js');
 
 // // Middleware // //
 app.use(bodyParser.json());
@@ -16,6 +17,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use('/auth', auth);
 app.use('/api/vanbuilds', vanbuilds);
 app.use('/api/users', users);
 
