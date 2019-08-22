@@ -19,9 +19,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(cors(
-
-));
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
 
 app.use('/auth', auth);
 app.use('/api/vanbuilds', vanbuilds);
