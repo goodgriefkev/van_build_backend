@@ -12,6 +12,7 @@ const PORT = process.env.PORT;
 const vanbuilds = require('./api/vanbuilds.js');
 const users = require('./api/users.js');
 const auth = require('./auth/index.js');
+const authMiddleware = require('./auth/middleware.js');
 
 // // Middleware // //
 app.use(bodyParser.json());
@@ -26,7 +27,7 @@ app.use(cors({
 
 app.use('/auth', auth);
 app.use('/api/vanbuilds', vanbuilds);
-app.use('/api/users', users);
+app.use('/api/users', authMiddleware.ensureLoggedIn, users);
 
 // // Error Handling // //
 app.use(function(req, res, next) {
