@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const queries = require('../db/user_queries.js');
-const vanbuild = require('../db/vanbuild_queries.js')
+const vanbuild = require('../db/vanbuild_queries.js');
+
+const authMiddleware = require('../auth/middleware.js');
 
 function isValidId(req, res, next) {
   if(!isNaN(req.params.id)) return next();
   next(new Error('User Not Found'));
 };
 
-router.get('/:id', isValidId, (req, res, next) => {
+router.get('/:id', authMiddleware.allowAccess, isValidId, (req, res, next) => {
   queries.getOne(req.params.id)
   .then(data => {
     if(data) {
@@ -19,7 +21,7 @@ router.get('/:id', isValidId, (req, res, next) => {
   })
 });
 
-router.get('/:id/vanbuild', (req, res) => {
+router.get('/:id/vanbuild', authMiddleware.allowAccess, (req, res) => {
   if (!isNaN(req.params.id)) {
     vanbuild
       .getByUser(req.params.id)

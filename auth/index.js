@@ -70,7 +70,8 @@ router.post('/login', (req, res, next) => {
                   signed: true
                 });
                 res.json({
-                  message: "Logged in"
+                  message: "Logged in",
+                  user: user.id
                 });
               } else {
                 next(Error('Invalid Login'));
@@ -83,6 +84,13 @@ router.post('/login', (req, res, next) => {
   } else {
     next(new Error('Invalid Login'));
   };
+});
+
+router.get('/logout', (req, res) => {
+  res.clearCookie('user_id');
+  res.json({
+    message: 'logged out'
+  })
 });
 
 module.exports = router;
