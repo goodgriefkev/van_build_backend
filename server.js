@@ -18,7 +18,7 @@ const authMiddleware = require('./auth/middleware.js');
 
 // // Middleware // //
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://eloquent-benz-b8d2dd.netlify.com',
   credentials: true
 }));
 app.use(bodyParser.json());
